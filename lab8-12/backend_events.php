@@ -2,8 +2,8 @@
 require_once '_db.php';
 
 $stmt = $db->prepare("SELECT * FROM reservations WHERE NOT ((end <= :start) OR (start >= :end))");
-$stmt->bindParam(':start', $_GET['start']);
-$stmt->bindParam(':end', $_GET['end']);
+$stmt->bindParam(':start', $_POST['start']);
+$stmt->bindParam(':end', $_POST['end']);
 $stmt->execute();
 $result = $stmt->fetchAll();
 

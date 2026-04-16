@@ -72,7 +72,41 @@
                 </select>
             </div>
             
-            <div style="margin-top: 15px;"><input type="submit" value="Save" /> <a href="javascript:window.close();">Cancel</a></div>
+            <div style="margin-top: 15px;"><input type="submit" value="Save" /> <a href="#">Cancel</a></div>
         </form>
+        <script type="text/javascript">
+            $("#f").submit(function (e) {
+                e.preventDefault(); 
+                var f = $("#f");
+                $.ajax({
+                    type: "POST",
+                    url: f.attr("action"),
+                    data: f.serialize(),
+                    success: function(response) {
+                        if (parent && parent.DayPilot && parent.DayPilot.Modal) {
+                            parent.DayPilot.Modal.close({"result": "OK"});
+                        } else {
+                            parent.location.reload();
+                        }
+                    },
+                    error: function() {
+                        parent.location.reload();
+                    }
+                });
+            });
+
+            $("a:contains('Cancel')").off("click").on("click", function(e) {
+                e.preventDefault();
+                if (parent && parent.DayPilot && parent.DayPilot.Modal) {
+                    parent.DayPilot.Modal.close();
+                } else {
+                    parent.location.reload();
+                }
+            });
+
+            $(document).ready(function () {
+                $("#name").focus();
+            });
+        </script>
     </body>
 </html>
