@@ -3,6 +3,17 @@
 <head>
         <meta charset="UTF-8">
         <title>HTML5 Бронювання кімнат в готелі</title>
+        
+        <link rel="manifest" href="manifest.json">
+        
+        <meta name="theme-color" content="#2F3BA2">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="apple-mobile-web-app-title" content="Hotel PWA">
+        <link rel="apple-touch-icon" href="img/icon-192.png">
+        <meta name="msapplication-TileImage" content="img/icon-192.png">
+        <meta name="msapplication-TileColor" content="#2F3BA2">
+
         <link rel="stylesheet" href="style.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="js/daypilot-all.min.js"></script>
@@ -18,7 +29,7 @@
     <header>
         <div class="bg-help">
         <div class="inBox">
-            <h1 id="logo">HTML5 Бронювання кімнат (Лаб 11)</h1>
+            <h1 id="logo">HTML5 Бронювання кімнат (Лаб 12: PWA)</h1>
             <hr class="hidden" />
         </div>
         </div>
@@ -165,5 +176,14 @@
         loadResources();
         loadEvents();
     </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker
+                    .register('./service-worker.js')
+                    .then(function() { console.log('Service Worker Registered'); });
+        }
+    </script>
+
 </body>
 </html>
